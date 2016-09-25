@@ -16,6 +16,7 @@ import java.io.Serializable;
 public class Persona implements Serializable {
     
     private String dni, name, lastName, gender, direccio, poblacio;
+    private int phoneNumber;
     //Constructor
     /**
      * Constructor de la Classe Persona
@@ -26,13 +27,14 @@ public class Persona implements Serializable {
      * @param direccio
      * @param poblacio
      */
-    public Persona(String dni, String name, String lastName, String gender, String direccio, String poblacio){
+    public Persona(String dni, String name, String lastName, String gender, String direccio, String poblacio, int phoneNumber){
         this.dni = dni;
         this.name = name;
         this.lastName = lastName;
         this.gender = gender;
         this.direccio=direccio;
         this.poblacio=poblacio;
+        this.phoneNumber=phoneNumber;
     }
     //equals
     /**
@@ -92,6 +94,14 @@ public class Persona implements Serializable {
     public String getPoblacio() {
         return this.poblacio;
     }
+
+    /**
+     *
+     * @return
+     */
+    public int getPhoneNumber(){
+        return this.phoneNumber;
+    }
     //Setters
 
     /**
@@ -139,6 +149,14 @@ public class Persona implements Serializable {
      */
     public void setPoblacio(String poblacio) {
         this.poblacio = poblacio;
+    }
+
+    /**
+     *
+     * @param phoneNumber
+     */
+    public void setPhoneNumber(int phoneNumber){
+        this.phoneNumber=phoneNumber;
     }
     
 }

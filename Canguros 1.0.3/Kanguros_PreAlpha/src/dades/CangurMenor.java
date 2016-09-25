@@ -22,10 +22,11 @@ public class CangurMenor extends Cangur implements Serializable {
      * @param poblacio
      * @param salari
      * @param aval
+     * @param phoneNumber
      * @throws ParseException
      */
-    public CangurMenor(String dni, String nom, String cognom, String gender, String naixement, String direccio, String poblacio, float salari, Persona aval) throws ParseException {
-        super(dni, nom, cognom, gender, naixement, direccio, poblacio, salari);
+    public CangurMenor(String dni, String nom, String cognom, String gender, String naixement, String direccio, String poblacio, float salari, Persona aval, int phoneNumber) throws ParseException {
+        super(dni, nom, cognom, gender, naixement, direccio, poblacio, salari,phoneNumber);
         this.aval = aval;
     }
     

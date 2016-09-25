@@ -27,10 +27,11 @@ public class Cangur extends Persona implements Serializable {
      * @param direccio
      * @param poblacio
      * @param salari
+     * @param phoneNumber
      * @throws ParseException
      */
-    public Cangur(String dni, String nom, String cognom, String gender, String naixement, String direccio, String poblacio, float salari) throws ParseException {
-        super(dni, nom, cognom, gender, direccio, poblacio);
+    public Cangur(String dni, String nom, String cognom, String gender, String naixement, String direccio, String poblacio, float salari, int phoneNumber) throws ParseException {
+        super(dni, nom, cognom, gender, direccio, poblacio,phoneNumber);
         this.salari = salari;
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         this.naixement = formatter.parse(naixement);
