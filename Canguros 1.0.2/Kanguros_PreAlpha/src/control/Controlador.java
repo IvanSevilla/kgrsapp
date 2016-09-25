@@ -5,6 +5,8 @@
  */
 package control;
 
+import dades.Cangur;
+import dades.Persona;
 import dades.Registres;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -21,11 +23,18 @@ public class Controlador {
     private Registres dades;
     private String fitxer;
     
+    /**
+     *
+     */
     public Controlador() {
         this.dades = new Registres();
         this.fitxer = "dades.dat"; //Fitxer de dades per defecte
     }
     
+    /**
+     *
+     * @throws IOException
+     */
     public void guardarDades() throws IOException {
             FileOutputStream fos = null;
             ObjectOutputStream os = null;
@@ -40,6 +49,11 @@ public class Controlador {
         }
     }
     
+    /**
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void carregarDades() throws IOException, ClassNotFoundException {
         FileInputStream fis = null;
         ObjectInputStream is = null;
@@ -53,5 +67,23 @@ public class Controlador {
             is.close();
             fis.close();   
         }
+    }
+
+    /**
+     *
+     * @param nouEmpleat
+     * @throws Exception
+     */
+    public void addWorker(Cangur nouEmpleat) throws Exception{
+        this.dades.afegirCangur(nouEmpleat);
+    }
+
+    /**
+     *
+     * @param nouClient
+     * @throws Exception
+     */
+    public void addClient(Persona nouClient) throws Exception{
+        this.dades.afegirClient(nouClient);
     }
 }

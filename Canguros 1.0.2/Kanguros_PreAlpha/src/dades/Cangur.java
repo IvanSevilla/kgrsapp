@@ -10,55 +10,73 @@ import java.util.Date;
  * @author Ivan Sevilla & Martí Huerta
  */
 public class Cangur extends Persona implements Serializable {
-
-    private String direccio, poblacio;
+    
+    //private Servei serv;
     private float salari;
     private Date naixement;
     
+    /**
+     *
+     * @param dni
+     * @param nom
+     * @param cognom
+     * @param gender
+     * @param naixement
+     * @param direccio
+     * @param poblacio
+     * @param salari
+     * @throws ParseException
+     */
     public Cangur(String dni, String nom, String cognom, String gender, String naixement, String direccio, String poblacio, float salari) throws ParseException {
-        super(dni, nom, cognom, gender);
-        this.direccio = direccio;
-        this.poblacio = poblacio;
+        super(dni, nom, cognom, gender, direccio, poblacio);
         this.salari = salari;
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         this.naixement = formatter.parse(naixement);
     }
     
     //Setters
-    public void setDireccio(String direccio) {
-        this.direccio = direccio;
-    }
     
-    public void setPoblacio(String poblacio) {
-        this.poblacio = poblacio;
-    }
-    
+    /**
+     *
+     * @param salari
+     */
     public void setSalari(float salari) {
         this.salari = salari;
     }
     
+    /**
+     *
+     * @param naixement
+     * @throws ParseException
+     */
     public void setNaixement(String naixement) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         this.naixement = formatter.parse(naixement);
     }
     
     //Getters
-    public String getDireccio() {
-        return this.direccio;
-    }
+
     
-    public String getPoblacio() {
-        return this.poblacio;
-    }
-    
+    /**
+     *
+     * @return
+     */
     public float getSalari() {
         return this.salari;
     }
     
+    /**
+     *
+     * @return
+     */
     public Date getNaixement() {
         return this.naixement;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getEdat() {
         SimpleDateFormat deformat = new SimpleDateFormat("yyyy");
         return Integer.parseInt(deformat.format(this.naixement));

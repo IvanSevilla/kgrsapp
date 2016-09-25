@@ -63,6 +63,10 @@ public class Servei implements Serializable {
         this.valoracio=valoracio;
     }
     
+    /**
+     *
+     * @param client
+     */
     public void setClient(Persona client) {
         this.client = client;
     }
@@ -100,15 +104,28 @@ public class Servei implements Serializable {
         return this.valoracio;
     }
     
+    /**
+     *
+     * @return
+     */
     public Persona getClient() {
         return this.client;
     }
     
+    /**
+     *
+     * @return
+     */
     public Cangur getEmpleat() {
         return this.empleat;
     }
     
     //Equals
+    /**
+     * 
+     * @param servei
+     * @return 
+     */
     @Override
     public boolean equals(Object servei) {
        if(servei instanceof Servei) {
@@ -123,7 +140,10 @@ public class Servei implements Serializable {
            return false;
        }
     }
-
+    /**
+     * 
+     * @return 
+     */
     @Override
     public int hashCode() {
         int hash = 7;

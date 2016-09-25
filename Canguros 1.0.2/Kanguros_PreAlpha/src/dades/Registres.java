@@ -18,6 +18,11 @@ public class Registres implements Serializable {
         this.clients = new ArrayList<>();
     }
     
+    /**
+     *
+     * @param nouEmpleat
+     * @throws Exception
+     */
     public void afegirCangur(Cangur nouEmpleat) throws Exception {
         if (!this.empleats.contains(nouEmpleat)) {
             this.empleats.add(nouEmpleat);
@@ -27,6 +32,11 @@ public class Registres implements Serializable {
         }
     }
     
+    /**
+     *
+     * @param nouServei
+     * @throws Exception
+     */
     public void afegirServei(Servei nouServei) throws Exception {
         if (!this.serveis.contains(nouServei)) {
             this.serveis.add(nouServei);
@@ -36,6 +46,11 @@ public class Registres implements Serializable {
         }
     }
     
+    /**
+     *
+     * @param nouClient
+     * @throws Exception
+     */
     public void afegirClient(Persona nouClient) throws Exception {
         if (!this.clients.contains(nouClient)) {
             this.clients.add(nouClient);
@@ -45,6 +60,11 @@ public class Registres implements Serializable {
         }
     }
     
+    /**
+     *
+     * @param empleat
+     * @throws Exception
+     */
     public void treureCangur(Cangur empleat) throws Exception {
         if (this.empleats.contains(empleat)) {
             throw new Exception("L'empleat no existeix al registre.");
@@ -54,6 +74,11 @@ public class Registres implements Serializable {
         }
     }
     
+    /**
+     *
+     * @param servei
+     * @throws Exception
+     */
     public void treureServei(Servei servei) throws Exception {
         if (this.serveis.contains(servei)) {
             throw new Exception("El servei no existeix al registre.");
@@ -63,6 +88,11 @@ public class Registres implements Serializable {
         }
     }
     
+    /**
+     *
+     * @param client
+     * @throws Exception
+     */
     public void treureClient(Persona client) throws Exception {
         if (this.clients.contains(client)) {
             throw new Exception("El client no existeix al registre.");

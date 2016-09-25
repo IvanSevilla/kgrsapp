@@ -11,15 +11,36 @@ public class CangurMenor extends Cangur implements Serializable {
     
     private Persona aval;
     
+    /**
+     *
+     * @param dni
+     * @param nom
+     * @param cognom
+     * @param gender
+     * @param naixement
+     * @param direccio
+     * @param poblacio
+     * @param salari
+     * @param aval
+     * @throws ParseException
+     */
     public CangurMenor(String dni, String nom, String cognom, String gender, String naixement, String direccio, String poblacio, float salari, Persona aval) throws ParseException {
         super(dni, nom, cognom, gender, naixement, direccio, poblacio, salari);
         this.aval = aval;
     }
     
+    /**
+     *
+     * @param newAval
+     */
     public void setAval(Persona newAval) {
         this.aval = newAval;
     }
     
+    /**
+     *
+     * @return
+     */
     public Persona getAval() {
         return this.aval;
     }
