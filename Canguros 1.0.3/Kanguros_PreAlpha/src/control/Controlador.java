@@ -9,6 +9,7 @@ import dades.Cangur;
 import dades.Persona;
 import dades.Registres;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -32,41 +33,85 @@ public class Controlador {
     }
     
     /**
-     *
-     * @throws IOException
+     * @throws java.lang.Exception
      */
-    public void guardarDades() throws IOException {
-            FileOutputStream fos = null;
-            ObjectOutputStream os = null;
+    public void guardarDades() throws Exception {
+        FileOutputStream fileOut;
+        ObjectOutputStream out;
+        
         try {
-            fos = new FileOutputStream(fitxer);
-            os = new ObjectOutputStream(fos);
-            os.writeObject(dades);
+            fileOut = new FileOutputStream(fitxer);
+        } catch (FileNotFoundException ex) {
+            throw new Exception("no s'ha trobat el fitxer per guardar les dades.");
         }
+        
+        try {
+            out = new ObjectOutputStream(fileOut);
+        } catch (IOException ex) {
+            throw new Exception("no s'ha pogut obrir el canal d'escriptura.");
+        }
+        
+        try {
+            out.writeObject(this.dades);
+        } 
+        catch (IOException i) {
+            throw new Exception("no s'han pogut escriure les dades.");
+        }
+        
         finally {
-            os.close();
-            fos.close();
+            try {
+                out.close();
+            } catch (IOException ex) {
+                throw new Exception("no s'ha pogut tancar el canal d'escriptura correctament.");
+            }
+            try {
+                fileOut.close();
+            } catch (IOException ex) {
+                throw new Exception("no s'ha pogut tancar el fitxer correctament.");
+            }
         }
     }
     
     /**
      *
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws java.lang.Exception
      */
-    public void carregarDades() throws IOException, ClassNotFoundException {
-        FileInputStream fis = null;
-        ObjectInputStream is = null;
+    public void carregarDades() throws Exception {
+        FileInputStream fileIn;
+        ObjectInputStream in;
         
         try {
-            fis = new FileInputStream(fitxer);
-            is = new ObjectInputStream(fis);
-            this.dades = (Registres)(is.readObject());
+            fileIn = new FileInputStream(fitxer);
+        } catch (FileNotFoundException ex) {
+            throw new Exception("no s'ha trobat el fitxer.");
         }
+        
+        try {
+            in = new ObjectInputStream(fileIn);
+        } catch (IOException ex) {
+            throw new Exception("no s'ha pogut obrir el fitxer.");
+        }
+        
+        try {            
+            this.dades = (Registres)(in.readObject());           
+        }
+        catch (IOException | ClassNotFoundException i) {
+            throw new Exception("no s'ha pogut llegir el fitxer.");
+        }      
         finally {
-            is.close();
-            fis.close();   
-        }
+            
+            try {
+                in.close();
+            } catch (IOException ex) {
+                throw new Exception("no s'ha pogut tancar el canal de lectura correctament.");
+            }
+            
+            try {
+                fileIn.close();
+            } catch (IOException ex) {
+                throw new Exception("no s'ha pogut tancar el fitxer correctament.");
+            }
+        }   
     }
 
     /**
@@ -74,7 +119,7 @@ public class Controlador {
      * @param nouEmpleat
      * @throws Exception
      */
-    public void addWorker(Cangur nouEmpleat) throws Exception{
+    public void addWorker(Cangur nouEmpleat) throws Exception {
         this.dades.afegirCangur(nouEmpleat);
     }
 
@@ -83,7 +128,7 @@ public class Controlador {
      * @param nouClient
      * @throws Exception
      */
-    public void addClient(Persona nouClient) throws Exception{
-        this.dades.afegirClient(nouClient);
+    public void addClient(Persona nouClient) throws Exception {
+        this.dades.afegirClient(nouClient); 
     }
 }

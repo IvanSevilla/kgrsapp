@@ -13,6 +13,8 @@ public class DialogEditWorker extends javax.swing.JDialog {
     private java.awt.Frame parent;
     /**
      * Creates new form DialogEditWorker
+     * @param parent
+     * @param modal
      */
     public DialogEditWorker(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -137,7 +139,7 @@ public class DialogEditWorker extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.parent.editWorker(this.jTextField1.getText(),this.jTextField2.getText(),this.jTextField3.getText(),this.jTextField4.getText());
+        //this.parent.editWorker(this.jTextField1.getText(),this.jTextField2.getText(),this.jTextField3.getText(),this.jTextField4.getText());
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -170,6 +172,7 @@ public class DialogEditWorker extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 DialogEditWorker dialog = new DialogEditWorker(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
