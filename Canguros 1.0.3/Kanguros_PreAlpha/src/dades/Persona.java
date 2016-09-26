@@ -159,9 +159,4 @@ public class Persona implements Serializable {
         this.phoneNumber=phoneNumber;
     }
     
-    @Override
-    public String toString(){
-        return this.lastName+", "+this.name;
-    }
-    
 }

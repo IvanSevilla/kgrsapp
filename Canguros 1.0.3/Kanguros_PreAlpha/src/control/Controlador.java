@@ -139,39 +139,54 @@ public class Controlador {
      * @return
      */
     public ArrayList<String> mostraCangur() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<String> retorna = new ArrayList<>();
+        for(Cangur c : this.dades.getCangurs()) {
+            retorna.add(c.getLastName() + ", " + c.getName());
+        }
+        
+        return retorna;
     }
 
     /**
      * Metode que retorna un treballador
      * @param selectedIndex
      * @return
+     * @throws java.lang.Exception
      */
-    public Cangur getWorker(int selectedIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Cangur getWorker(int selectedIndex) throws Exception {
+        return this.dades.getCangur(selectedIndex);
     }
      /**
      * Metode que retorna un client
      * @param selectedIndex
      * @return
+     * @throws java.lang.Exception
      */
-    public Persona getClient(int selectedIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Persona getClient(int selectedIndex) throws Exception {
+        return this.dades.getClient(selectedIndex);
     }
+    
      /**
      * Metode que retorna un servei
      * @param selectedIndex
      * @return
+     * @throws java.lang.Exception
      */
-    public Servei getService(int selectedIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Servei getService(int selectedIndex) throws Exception {
+        return this.dades.getServei(selectedIndex);
     }
+    
     /**
      * Metode que retorna la llista dels clients
      * @return
      */
     public ArrayList<String> mostraClient() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<String> retorna = new ArrayList<>();
+        for(Persona c : this.dades.getClients()) {
+            retorna.add(c.getLastName() + ", " + c.getName());
+        }
+        
+        return retorna;
     }
 
     /**
@@ -179,6 +194,10 @@ public class Controlador {
      * @return
      */
     public ArrayList<String> mostraService() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<String> retorna = new ArrayList<>();
+        for(int i = 0; i < this.dades.getNombreServeis(); i++) {
+            retorna.add("#" + (i + 1));
+        }
+        return retorna;
     }
 }

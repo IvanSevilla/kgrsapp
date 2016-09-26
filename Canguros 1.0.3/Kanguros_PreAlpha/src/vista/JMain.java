@@ -373,7 +373,7 @@ public class JMain extends javax.swing.JFrame {
     private javax.swing.JList<String> principalList;
     // End of variables declaration//GEN-END:variables
 public void mostraLlista(){
-    if(this.jComboBox1.getSelectedItem().equals("Worker")){ 
+    if(this.jComboBox1.getSelectedItem().equals("Worker")){
         this.principalList.setListData(this.control.mostraCangur().toArray(this.llistaPrincipal=new String[this.control.mostraCangur().size()]));    
     }
     if(this.jComboBox1.getSelectedItem().equals("Client")){
@@ -401,11 +401,15 @@ public void mostraLlista(){
             this.jLabel4.setVisible(true);
             this.jLabel5.setVisible(true);
             this.jLabel7.setVisible(true);
-            if(this.control.getWorker(this.principalList.getSelectedIndex())instanceof CangurMenor){
-                this.jLabel6.setVisible(true);
-            }
-            else{
-                this.jLabel6.setVisible(false);
+            try {
+                if(this.control.getWorker(this.principalList.getSelectedIndex()) instanceof CangurMenor){
+                    this.jLabel6.setVisible(true);
+                }
+                else{
+                    this.jLabel6.setVisible(false);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(JMain.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         if(this.jComboBox1.getSelectedItem().equals("Client")){
