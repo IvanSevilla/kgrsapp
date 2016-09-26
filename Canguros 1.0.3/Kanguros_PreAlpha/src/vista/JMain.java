@@ -6,9 +6,11 @@
 package vista;
 
 import control.Controlador;
+import dades.Cangur;
 import dades.CangurMenor;
 import dades.Persona;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -47,10 +49,12 @@ public class JMain extends javax.swing.JFrame {
         this.jTextNom.setVisible(false);
         this.jButtonCancela.setVisible(false);
         this.jButtonDesa.setVisible(false);
+        this.jLabel11.setVisible(false);
+        this.jTextField1.setVisible(false);
         try {
             this.llista();
         } catch (Exception ex) {
-            Logger.getLogger(JMain.class.getName()).log(Level.SEVERE, null, ex);
+            this.throwDialog(ex.getMessage());
         }
     }
 
@@ -89,6 +93,8 @@ public class JMain extends javax.swing.JFrame {
         jTextGender = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextDNI = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuAddWorker = new javax.swing.JMenuItem();
@@ -145,6 +151,11 @@ public class JMain extends javax.swing.JFrame {
             }
         });
 
+        principalList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                principalListValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(principalList);
 
         jTextPoblacio.addActionListener(new java.awt.event.ActionListener() {
@@ -184,6 +195,8 @@ public class JMain extends javax.swing.JFrame {
         jLabel8.setText("Gender:");
 
         jLabel9.setText("ID Card:");
+
+        jLabel11.setText("Salary:");
 
         jMenu1.setText("File");
 
@@ -294,7 +307,10 @@ public class JMain extends javax.swing.JFrame {
                                         .addComponent(jLabel9))
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel11)
+                                            .addComponent(jTextDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -320,12 +336,15 @@ public class JMain extends javax.swing.JFrame {
                             .addComponent(jTextDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel11))
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextPoblacio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextAdreca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextAdreca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -357,11 +376,11 @@ public class JMain extends javax.swing.JFrame {
         try {
             this.control.carregarDades();
         } catch (IOException ex) {
-            Logger.getLogger(JMain.class.getName()).log(Level.SEVERE, null, ex);
+            this.throwDialog(ex.getMessage());
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(JMain.class.getName()).log(Level.SEVERE, null, ex);
+            this.throwDialog(ex.getMessage());
         } catch (Exception ex) {
-            Logger.getLogger(JMain.class.getName()).log(Level.SEVERE, null, ex);
+            this.throwDialog(ex.getMessage());
         }
     }//GEN-LAST:event_menuLoadActionPerformed
 
@@ -393,7 +412,7 @@ public class JMain extends javax.swing.JFrame {
         try {
             this.llista();
         } catch (Exception ex) {
-            Logger.getLogger(JMain.class.getName()).log(Level.SEVERE, null, ex);
+            this.throwDialog(ex.getMessage());
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -416,6 +435,17 @@ public class JMain extends javax.swing.JFrame {
         this.jDialog1.dispose();
         this.jLabel10.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void principalListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_principalListValueChanged
+        int selection = this.principalList.getSelectedIndex();
+        if (selection!=-1) {
+            try {
+                this.llista();
+            } catch (Exception ex) {
+                this.throwDialog(ex.getMessage());
+            }
+ }
+    }//GEN-LAST:event_principalListValueChanged
 
     /**
      * @param args the command line arguments
@@ -460,6 +490,7 @@ public class JMain extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -475,6 +506,7 @@ public class JMain extends javax.swing.JFrame {
     private javax.swing.JTextField jTextAval;
     private javax.swing.JTextField jTextCognom;
     private javax.swing.JTextField jTextDNI;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextGender;
     private javax.swing.JTextField jTextNaixement;
     private javax.swing.JTextField jTextNom;
@@ -513,7 +545,7 @@ public class JMain extends javax.swing.JFrame {
      *
      * @throws Exception
      */
-    private void llista() throws Exception {
+    public void llista() throws Exception {
         this.mostraLlista();
         if(this.jComboBox1.getSelectedItem().equals("Worker")){
             this.jLabel1.setText("Name:");
@@ -534,6 +566,7 @@ public class JMain extends javax.swing.JFrame {
                 this.jTextNaixement.setText(this.control.getWorker(this.principalList.getSelectedIndex()).getNaixement().toString());
                 this.jTextNumero.setText(Integer.toString(this.control.getWorker(this.principalList.getSelectedIndex()).getPhoneNumber()));
                 this.jTextDNI.setText(this.control.getWorker(this.principalList.getSelectedIndex()).getDni());
+                this.jTextField1.setText(Float.toString(this.control.getWorker(this.principalList.getSelectedIndex()).getSalari()));
                 this.jLabel1.setVisible(true);
                 this.jLabel2.setVisible(true);
                 this.jLabel3.setVisible(true);
@@ -541,17 +574,31 @@ public class JMain extends javax.swing.JFrame {
                 this.jLabel5.setVisible(true);
                 this.jLabel7.setVisible(true);
                 this.jLabel8.setVisible(true);
+                this.jLabel11.setVisible(true);
+                this.jTextAdreca.setVisible(true);
+                this.jTextAval.setVisible(false);
+                this.jTextCognom.setVisible(true);
+                this.jTextDNI.setVisible(true);
+                this.jTextGender.setVisible(true);
+                this.jTextNaixement.setVisible(true);
+                this.jTextNumero.setVisible(true);
+                this.jTextPoblacio.setVisible(true);
+                this.jTextNom.setVisible(true);
+                this.jButtonCancela.setVisible(true);
+                this.jButtonDesa.setVisible(true);
+                this.jTextField1.setVisible(true);
                 try {
                     if(this.control.getWorker(this.principalList.getSelectedIndex()) instanceof CangurMenor){
                         this.jLabel6.setVisible(true);
                         this.jTextAval.setText(((CangurMenor)this.control.getWorker(this.principalList.getSelectedIndex())).getAval().getName()+" "+
                                 ((CangurMenor)this.control.getWorker(this.principalList.getSelectedIndex())).getAval().getLastName());
+                        this.jTextAval.setVisible(true);
                     }
                     else{
                         this.jLabel6.setVisible(false);
                     }
                 } catch (Exception ex) {
-                    Logger.getLogger(JMain.class.getName()).log(Level.SEVERE, null, ex);
+                    this.throwDialog(ex.getMessage());
                 }
             }
         }
@@ -580,6 +627,19 @@ public class JMain extends javax.swing.JFrame {
                 this.jLabel7.setVisible(false);
                 this.jLabel8.setVisible(true);
                 this.jLabel9.setVisible(true);
+                this.jLabel11.setVisible(false);
+                this.jTextAdreca.setVisible(true);
+                this.jTextAval.setVisible(false);
+                this.jTextCognom.setVisible(true);
+                this.jTextDNI.setVisible(true);
+                this.jTextGender.setVisible(true);
+                this.jTextNaixement.setVisible(false);
+                this.jTextNumero.setVisible(true);
+                this.jTextPoblacio.setVisible(true);
+                this.jTextNom.setVisible(true);
+                this.jButtonCancela.setVisible(true);
+                this.jButtonDesa.setVisible(true);
+                this.jTextField1.setVisible(false);
                 
         if(this.jComboBox1.getSelectedItem().equals("Service")){
             
@@ -621,7 +681,7 @@ public class JMain extends javax.swing.JFrame {
                     this.jLabel6.setVisible(false);
                     }
                 } catch (Exception ex) {
-                    Logger.getLogger(JMain.class.getName()).log(Level.SEVERE, null, ex);
+                    this.throwDialog(ex.getMessage());
             
             }
 
@@ -632,9 +692,37 @@ public class JMain extends javax.swing.JFrame {
         Persona p = new Persona(dni, name, lastName, gender, direccio, poblacio, phoneNumber);
         this.control.addClient(p);
     }
+    public void addCangur(String dni, String nom, String cognom, String gender, String naixement, String direccio, String poblacio, float salari, int phoneNumber){
+        Cangur c;
+        try {
+            c = new Cangur(dni, nom, cognom, gender, naixement, direccio, poblacio, salari, phoneNumber);
+            try {
+                this.control.addWorker(c);
+            } catch (Exception ex) {
+                this.throwDialog(ex.getMessage());
+            }
+        } catch (ParseException ex) {
+            this.throwDialog(ex.getMessage());
+        }
+        
+    }
+    public void addCangur(String dni, String nom, String cognom, String gender, String naixement, String direccio, String poblacio, float salari, Persona aval, int phoneNumber){
+     CangurMenor c;
+        try {
+            c = new CangurMenor(dni, nom, cognom, gender, naixement, direccio, poblacio, salari, aval, phoneNumber);
+            try {
+                this.control.addWorker(c);
+            } catch (Exception ex) {
+                this.throwDialog(ex.getMessage());
+            }
+        } catch (ParseException ex) {
+            this.throwDialog(ex.getMessage());
+        }
+    }
     public void throwDialog(String f){
         this.jLabel10.setText(f);
         this.jDialog1.setVisible(true);
+        this.jDialog1.setTitle("Error");
         
     }
 }

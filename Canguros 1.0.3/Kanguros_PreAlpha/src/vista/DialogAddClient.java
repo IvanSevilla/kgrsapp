@@ -174,9 +174,11 @@ public class DialogAddClient extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             this.f.addClient(this.jTextFieldID.getText(), this.jTextFieldName.getText(), this.jTextFieldLastName.getText(), this.jTextFieldGender.getText(), this.jTextFieldAdress.getText(), this.jTextFieldCity.getText(), Integer.parseInt(this.jTextFieldPhone.getText()));
+            this.f.llista();
         } catch (Exception ex) {
             this.f.throwDialog(ex.getMessage());
         }
+            
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

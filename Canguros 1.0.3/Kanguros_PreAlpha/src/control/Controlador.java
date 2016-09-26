@@ -31,7 +31,7 @@ public class Controlador {
      */
     public Controlador() {
         this.dades = new Registres();
-        this.fitxer = "dades.dat"; //Fitxer de dades per defecte
+        this.fitxer = "dades.txt"; //Fitxer de dades per defecte
     }
     
     /**
