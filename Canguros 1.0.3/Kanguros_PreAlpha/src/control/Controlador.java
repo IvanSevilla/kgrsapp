@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Marti Huerta Climent
+ * @author Ivan Sevilla & Martí Huerta
  */
 public class Controlador {
     
@@ -140,8 +140,10 @@ public class Controlador {
      */
     public ArrayList<String> mostraCangur() {
         ArrayList<String> retorna = new ArrayList<>();
-        for(Cangur c : this.dades.getCangurs()) {
-            retorna.add(c.getLastName() + ", " + c.getName());
+        if(!this.dades.getCangurArray().isEmpty()){
+            for(Cangur c : this.dades.getCangurs()) {
+                retorna.add(c.getLastName() + ", " + c.getName());
+            }
         }
         
         return retorna;

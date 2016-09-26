@@ -158,5 +158,4 @@ public class Persona implements Serializable {
     public void setPhoneNumber(int phoneNumber){
         this.phoneNumber=phoneNumber;
     }
-    
 }

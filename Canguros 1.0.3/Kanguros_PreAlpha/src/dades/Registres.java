@@ -7,7 +7,7 @@ import java.util.Comparator;
 
 /**
  * Classe que s'encarregarà de guardar els registres dels empleats, clients i serveis.
- * @author Iván Sevilla & Marti Huerta
+ * @author Ivan Sevilla & Martí Huerta
  */
 public class Registres implements Serializable {
     private ArrayList<Cangur> empleats;
@@ -149,6 +149,12 @@ public class Registres implements Serializable {
         throw new Exception("no s'ha trobat l'empleat amb el dni " + dni + ".");
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     public Cangur getCangur(int id) throws Exception {
         if (id >= this.empleats.size() || id < 0) {
             throw new Exception("el client no existeix.");
@@ -188,6 +194,12 @@ public class Registres implements Serializable {
         }
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     public Servei getServei(int id) throws Exception {
         if (id >= this.clients.size() || id < 0) {
             throw new Exception("el servei no existeix.");
@@ -197,7 +209,19 @@ public class Registres implements Serializable {
         }
     }
     
-   public int getNombreServeis() {
-       return this.serveis.size();
-   }
+    /**
+     *
+     * @return
+     */
+    public int getNombreServeis() {
+        return this.serveis.size();
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Cangur> getCangurArray() {
+        return this.empleats;
+    }
 }
