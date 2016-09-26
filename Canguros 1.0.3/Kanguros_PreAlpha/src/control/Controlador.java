@@ -8,12 +8,14 @@ package control;
 import dades.Cangur;
 import dades.Persona;
 import dades.Registres;
+import dades.Servei;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 /**
  *
@@ -130,5 +132,53 @@ public class Controlador {
      */
     public void addClient(Persona nouClient) throws Exception {
         this.dades.afegirClient(nouClient); 
+    }
+
+    /**
+     * Metode que retorna la llista dels treballadors
+     * @return
+     */
+    public ArrayList<String> mostraCangur() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Metode que retorna un treballador
+     * @param selectedIndex
+     * @return
+     */
+    public Cangur getWorker(int selectedIndex) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+     /**
+     * Metode que retorna un client
+     * @param selectedIndex
+     * @return
+     */
+    public Persona getClient(int selectedIndex) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+     /**
+     * Metode que retorna un servei
+     * @param selectedIndex
+     * @return
+     */
+    public Servei getService(int selectedIndex) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    /**
+     * Metode que retorna la llista dels clients
+     * @return
+     */
+    public ArrayList<String> mostraClient() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Metode que retorna la llista dels serveis
+     * @return
+     */
+    public ArrayList<String> mostraService() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
