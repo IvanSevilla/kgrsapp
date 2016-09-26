@@ -3,9 +3,7 @@ package dades;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.lang.Exception;
 
 /**
  * Classe abstracta que representa a l'empleat.
@@ -13,7 +11,6 @@ import java.lang.Exception;
  */
 public class Cangur extends Persona implements Serializable {
     
-    private ArrayList<Servei> servei;
     private float salari;
     private Date naixement;
     
@@ -35,7 +32,6 @@ public class Cangur extends Persona implements Serializable {
         this.salari = salari;
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         this.naixement = formatter.parse(naixement);
-        this.servei=new ArrayList<>();
     }
     
     //Setters
@@ -58,23 +54,7 @@ public class Cangur extends Persona implements Serializable {
         this.naixement = formatter.parse(naixement);
     }
 
-    /**
-     *
-     * @param serv
-     * @throws Exception
-     */
-    public void setServei(Servei serv) throws Exception{
-        if(!this.servei.contains(serv)){
-            this.servei.add(serv);
-        }
-        else{
-        throw new Exception();
-        }
-        
-        
-    }
     //Getters
-
     
     /**
      *
@@ -102,12 +82,4 @@ public class Cangur extends Persona implements Serializable {
         return Integer.parseInt(deformat.format(data.getTime()-this.naixement.getTime()));
     }
 
-    /**
-     * Metode que retorna un servei realitzat
-     * @param i
-     * @return
-     */
-    public Servei getServei(int i){
-        return this.servei.get(i);
-    }
 }

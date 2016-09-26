@@ -2,6 +2,7 @@ package dades;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Classe que s'encarregarà de guardar els registres dels empleats, clients i serveis.
@@ -101,4 +102,53 @@ public class Registres implements Serializable {
             this.clients.remove(client);
         }
     }
+    
+    /**
+     * Retorna una llista dels Cangurs ordenats en ordre alfabètic per cognom.
+     * @return Un ArrayList d'Strings
+     */
+    public ArrayList<String> getNomCangurs() {
+        ArrayList<String> resultat = new ArrayList<>();
+        for(int i = 0; i < this.empleats.size(); i++) {
+            resultat.add(this.empleats.get(i).getLastName() + ", " + this.empleats.get(i).getName());
+        }
+        //Ordenem en ordre alfabètic
+        Collections.sort(resultat);
+        return resultat;
+    }
+    
+    /**
+     * Retorna una llista dels Clients ordenats en ordre alfabètic per cognom.
+     * @return Un ArrayList d'Strings
+     */
+    public ArrayList<String> getNomClients() {
+        ArrayList<String> resultat = new ArrayList<>();
+        for(int i = 0; i < this.clients.size(); i++) {
+            resultat.add(this.clients.get(i).getLastName() + ", " + this.clients.get(i).getName());
+        }
+        //Ordenem en ordre alfabètic
+        Collections.sort(resultat);
+        return resultat;
+    }
+    
+    public Cangur getCangur(String dni) throws Exception {
+        for (Cangur empleat : this.empleats) {
+            if (empleat.getDni().equals(dni)) {
+                return empleat;
+            }
+        }
+        throw new Exception("no s'ha trobat l'empleat amb el dni " + dni);
+    }
+    
+    public Persona getClient(String dni) throws Exception {
+        for (Persona client : this.clients) {
+            if (client.getDni().equals(dni)) {
+                return client;
+            }
+        }
+        throw new Exception("no s'ha trobat el client amb el dni " + dni);
+    }
+    
+    
+    
 }
