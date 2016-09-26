@@ -7,15 +7,18 @@ package vista;
 
 /**
  *
- * @author Ivan_
+ * @author Ivan Sevilla & Martí Huerta
  */
 public class DialogAddWorker extends javax.swing.JDialog {
-
+    private JMain f;
     /**
      * Creates new form DialogAddWorker
+     * @param parent
+     * @param modal
      */
-    public DialogAddWorker(java.awt.Frame parent, boolean modal) {
+    public DialogAddWorker(JMain parent, boolean modal) {
         super(parent, modal);
+        this.f=parent;
         initComponents();
     }
 
@@ -73,8 +76,9 @@ public class DialogAddWorker extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                DialogAddWorker dialog = new DialogAddWorker(new javax.swing.JFrame(), true);
+                DialogAddWorker dialog = new DialogAddWorker((JMain) new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
