@@ -8,31 +8,33 @@ package control;
 import dades.Cangur;
 import dades.Persona;
 import dades.Registres;
+import dades.Servei;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 /**
- *
- * @author Marti Huerta Climent
+ * Classe controlador
+ * @author Ivan Sevilla & Martí Huerta
  */
 public class Controlador {
     
     private Registres dades;
-    private String fitxer;
+    private final String fitxer = "dades.dat";
     
     /**
-     *
+     * Crea la classe controlador inicialitzant les dades.
      */
     public Controlador() {
         this.dades = new Registres();
-        this.fitxer = "dades.dat"; //Fitxer de dades per defecte
     }
     
     /**
+     * Guarda les dades al fitxer predeterminat.
      * @throws java.lang.Exception
      */
     public void guardarDades() throws Exception {
@@ -73,7 +75,7 @@ public class Controlador {
     }
     
     /**
-     *
+     * Carrega les dades del fitxer predeterminat.
      * @throws java.lang.Exception
      */
     public void carregarDades() throws Exception {
@@ -115,7 +117,7 @@ public class Controlador {
     }
 
     /**
-     *
+     * Mètode que afegeix un empleat.
      * @param nouEmpleat
      * @throws Exception
      */
@@ -124,11 +126,107 @@ public class Controlador {
     }
 
     /**
-     *
+     * Mètode que afegeix un client.
      * @param nouClient
      * @throws Exception
      */
     public void addClient(Persona nouClient) throws Exception {
         this.dades.afegirClient(nouClient); 
+    }
+    
+    /**
+     * Mètode que afegeix un servei.
+     * @param nouServei
+     * @throws Exception
+     */
+    public void addServei(Servei nouServei) throws Exception {
+        this.dades.afegirServei(nouServei);
+    }
+
+    /**
+     * Metode que retorna la llista dels treballadors
+     * @return
+     */
+    public ArrayList<String> mostraCangur() {
+        ArrayList<String> retorna = new ArrayList<>();
+        if(!this.dades.getCangurArray().isEmpty()){
+            for(Cangur c : this.dades.getCangurs()) {
+                retorna.add(c.getLastName() + ", " + c.getName());
+            }
+        }
+        
+        return retorna;
+    }
+
+    /**
+     * Metode que retorna un treballador
+     * @param selectedIndex
+     * @return
+     * @throws java.lang.Exception
+     */
+    public Cangur getWorker(int selectedIndex) throws Exception {
+        return this.dades.getCangur(selectedIndex);
+    }
+     /**
+     * Metode que retorna un client
+     * @param selectedIndex
+     * @return
+     * @throws java.lang.Exception
+     */
+    public Persona getClient(int selectedIndex) throws Exception {
+        return this.dades.getClient(selectedIndex);
+    }
+    
+     /**
+     * Metode que retorna un servei
+     * @param selectedIndex
+     * @return
+     * @throws java.lang.Exception
+     */
+    public Servei getService(int selectedIndex) throws Exception {
+        return this.dades.getServei(selectedIndex);
+    }
+    
+    /**
+     * Metode que retorna la llista dels clients
+     * @return
+     */
+    public ArrayList<String> mostraClient() {
+        ArrayList<String> retorna = new ArrayList<>();
+        for(Persona c : this.dades.getClients()) {
+            retorna.add(c.getLastName() + ", " + c.getName());
+        }
+        
+        return retorna;
+    }
+
+    /**
+     * Metode que retorna la llista dels serveis
+     * @return
+     */
+    public ArrayList<String> mostraService() {
+        ArrayList<String> retorna = new ArrayList<>();
+        for(int i = 0; i < this.dades.getNombreServeis(); i++) {
+            retorna.add("#" + (i + 1));
+        }
+        return retorna;
+    }
+    
+    /**
+     * Retorna el nom del millor cangur.
+     * @return
+     * @throws Exception
+     */
+    public String getMillorCangur() throws Exception {
+        return this.dades.getMillorCangur().getLastName() + ", " + this.dades.getMillorCangur().getName();
+    }
+    
+    /**
+     * Retorna el nom del millor client.
+     * @return
+     * @throws Exception
+     */
+    public String getMillorClient() throws Exception {
+        return this.dades.getMillorClient().getLastName() + ", " + this.dades.getMillorClient().getName();
     }
 }
