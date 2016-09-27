@@ -12,7 +12,7 @@ public class CangurMenor extends Cangur implements Serializable {
     private Persona aval;
     
     /**
-     *
+     * Constructor de cangur menor d'edat.
      * @param dni
      * @param nom
      * @param cognom
@@ -31,7 +31,7 @@ public class CangurMenor extends Cangur implements Serializable {
     }
     
     /**
-     *
+     * Set avaluador.
      * @param newAval
      */
     public void setAval(Persona newAval) {
@@ -39,7 +39,7 @@ public class CangurMenor extends Cangur implements Serializable {
     }
     
     /**
-     *
+     * Get avaluador.
      * @return
      */
     public Persona getAval() {

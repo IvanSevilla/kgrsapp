@@ -16,7 +16,9 @@ import java.io.Serializable;
 public class Persona implements Serializable {
     
     private String dni, name, lastName, gender, direccio, poblacio;
+    private int serveis; //Rebuts o realitzats
     private int phoneNumber;
+    
     //Constructor
     /**
      * Constructor de la Classe Persona
@@ -26,6 +28,7 @@ public class Persona implements Serializable {
      * @param gender
      * @param direccio
      * @param poblacio
+     * @param phoneNumber
      */
     public Persona(String dni, String name, String lastName, String gender, String direccio, String poblacio, int phoneNumber){
         this.dni = dni;
@@ -35,10 +38,12 @@ public class Persona implements Serializable {
         this.direccio=direccio;
         this.poblacio=poblacio;
         this.phoneNumber=phoneNumber;
+        this.serveis = 0;
     }
+    
     //equals
     /**
-     * Metode que comprova si el objecte persona que entra es igual, mitjançant 
+     * Mètode que comprova si el objecte persona que entra es igual, mitjançant 
      * el Dni
      * @param pers
      * @return 
@@ -46,9 +51,10 @@ public class Persona implements Serializable {
     public boolean equals(Persona pers){
         return this.dni.equals(pers.getDni());
     }
+    
     //Getters
     /**
-     * Metode que retorna el Dni
+     * Mètode que retorna el Dni
      * @return
      */
     public String getDni(){
@@ -56,7 +62,7 @@ public class Persona implements Serializable {
     }
     
     /**
-     * Metode que retorna el nom
+     * Mètode que retorna el nom
      * @return
      */
     public String getName(){
@@ -64,7 +70,7 @@ public class Persona implements Serializable {
     }
 
     /**
-     * Metode que retorna el Congom
+     * Mètode que retorna el Congom
      * @return
      */
     public String getLastName(){
@@ -72,7 +78,7 @@ public class Persona implements Serializable {
     }
     
     /**
-     * Metode que retorna el genere
+     * Mètode que retorna el genere
      * @return
      */
     public String getGender(){
@@ -80,7 +86,7 @@ public class Persona implements Serializable {
     }
     
     /**
-     *
+     * Mètode que retorna la direcció.
      * @return
      */
     public String getDireccio() {
@@ -88,7 +94,7 @@ public class Persona implements Serializable {
     }
     
     /**
-     *
+     * Mètode que retorna la població.
      * @return
      */
     public String getPoblacio() {
@@ -96,16 +102,17 @@ public class Persona implements Serializable {
     }
 
     /**
-     *
+     * Mètode que retorna el nombre de telèfon.
      * @return
      */
     public int getPhoneNumber(){
         return this.phoneNumber;
     }
+    
     //Setters
 
     /**
-     * Metode que canvia el dni
+     * Mètode que canvia el dni.
      * @param dni
      */
     public void setDni(String dni){
@@ -113,7 +120,7 @@ public class Persona implements Serializable {
     }
 
     /**
-     * Metode que canvia el nom
+     * Mètode que canvia el nom
      * @param name
      */
     public void setName(String name){
@@ -121,7 +128,7 @@ public class Persona implements Serializable {
     }
 
     /**
-     * Metode que canvia el cognom
+     * Mètode que canvia el cognom
      * @param lastName
      */
     public void setLastName(String lastName){
@@ -129,14 +136,15 @@ public class Persona implements Serializable {
     }
 
     /**
-     * Metode que canvia el genere
+     * Mètode que canvia el gènere.
      * @param gender
      */
     public void setGender(String gender){
         this.gender = gender;
     }
-      /**
-     *
+    
+    /**
+     * Mètode que canvia la direcció.
      * @param direccio
      */
     public void setDireccio(String direccio) {
@@ -144,7 +152,7 @@ public class Persona implements Serializable {
     }
     
     /**
-     *
+     * Mètode que canvia la població.
      * @param poblacio
      */
     public void setPoblacio(String poblacio) {
@@ -152,11 +160,23 @@ public class Persona implements Serializable {
     }
 
     /**
-     *
+     * Mètode que canvia el nombre de telèfon.
      * @param phoneNumber
      */
     public void setPhoneNumber(int phoneNumber){
         this.phoneNumber=phoneNumber;
     }
     
+    public int getServeis() {
+        return this.serveis;
+    }
+    
+    public void setServeis(int serv) throws Exception {
+        if (serv < 0) {
+            throw new Exception("els serveis no poden ser negatius.");
+        }
+        else {
+            this.serveis = serv;
+        }
+    }
 }

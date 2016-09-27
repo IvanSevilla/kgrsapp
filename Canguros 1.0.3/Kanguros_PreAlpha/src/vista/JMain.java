@@ -6,21 +6,56 @@
 package vista;
 
 import control.Controlador;
+import dades.Cangur;
+import dades.CangurMenor;
+import dades.Persona;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Marti Huerta Climent
+ * Classe principal de la interficie gràfica
+ * @author Ivan Sevilla & Martí Huerta
  */
 public class JMain extends javax.swing.JFrame {
     private Controlador control;
+    
+    private String[] llistaPrincipal;
     /**
      * Creates new form JMain
      */
     public JMain() {
+        this.control = new Controlador();
         initComponents();
+        this.jDialog1.setVisible(false);
+        this.jLabel1.setVisible(false);
+        this.jLabel2.setVisible(false);
+        this.jLabel3.setVisible(false);
+        this.jLabel4.setVisible(false);
+        this.jLabel5.setVisible(false);
+        this.jLabel6.setVisible(false);
+        this.jLabel7.setVisible(false);
+        this.jLabel8.setVisible(false);
+        this.jLabel9.setVisible(false);
+        this.jTextAdreca.setVisible(false);
+        this.jTextAval.setVisible(false);
+        this.jTextCognom.setVisible(false);
+        this.jTextDNI.setVisible(false);
+        this.jTextGender.setVisible(false);
+        this.jTextNaixement.setVisible(false);
+        this.jTextNumero.setVisible(false);
+        this.jTextPoblacio.setVisible(false);
+        this.jTextNom.setVisible(false);
+        this.jButtonCancela.setVisible(false);
+        this.jButtonDesa.setVisible(false);
+        this.jLabel11.setVisible(false);
+        this.jTextField1.setVisible(false);
+        try {
+            this.llista();
+        } catch (Exception ex) {
+            this.throwDialog(ex.getMessage());
+        }
     }
 
     /**
@@ -32,16 +67,38 @@ public class JMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jLabel10 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        principalList = new javax.swing.JList<>();
+        jTextNom = new javax.swing.JTextField();
+        jTextPoblacio = new javax.swing.JTextField();
+        jTextCognom = new javax.swing.JTextField();
+        jTextAdreca = new javax.swing.JTextField();
+        jTextNumero = new javax.swing.JTextField();
+        jTextAval = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jTextNaixement = new javax.swing.JTextField();
+        jButtonDesa = new javax.swing.JButton();
+        jButtonCancela = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jTextGender = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTextDNI = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        menuWorker = new javax.swing.JMenu();
         menuAddWorker = new javax.swing.JMenuItem();
-        menuEditWorker = new javax.swing.JMenuItem();
-        menuClient = new javax.swing.JMenu();
         menuAddClient = new javax.swing.JMenuItem();
-        menuEditClient = new javax.swing.JMenuItem();
-        menuService = new javax.swing.JMenu();
         menuAddService = new javax.swing.JMenuItem();
         menuEdit = new javax.swing.JMenu();
         menuSave = new javax.swing.JMenuItem();
@@ -49,14 +106,99 @@ public class JMain extends javax.swing.JFrame {
         menuAbout = new javax.swing.JMenu();
         menuInfo = new javax.swing.JMenuItem();
 
+        jDialog1.setBounds(new java.awt.Rectangle(0, 0, 125, 50));
+        jDialog1.setMinimumSize(new java.awt.Dimension(500, 250));
+        jDialog1.setResizable(false);
+
+        jButton1.setText("Okay");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jLabel10))
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addGap(227, 227, 227)
+                        .addComponent(jButton1)))
+                .addContainerGap(284, Short.MAX_VALUE))
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cangurs");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Worker", "Client", "Service"}));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        principalList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                principalListValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(principalList);
+
+        jTextPoblacio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextPoblacioActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Name:");
+
+        jLabel2.setText("City:");
+
+        jLabel3.setText("Lastname:");
+
+        jLabel4.setText("Adress:");
+
+        jLabel5.setText("Phone Number:");
+
+        jLabel6.setText("Guarantee:");
+
+        jLabel7.setText("Birth Date:");
+
+        jButtonDesa.setText("Desa");
+        jButtonDesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDesaActionPerformed(evt);
+            }
+        });
+
+        jButtonCancela.setText("Cancela");
+        jButtonCancela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelaActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Gender:");
+
+        jLabel9.setText("ID Card:");
+
+        jLabel11.setText("Salary:");
 
         jMenu1.setText("File");
-
-        menuWorker.setText("Worker");
 
         menuAddWorker.setText("Add Worker");
         menuAddWorker.addActionListener(new java.awt.event.ActionListener() {
@@ -64,19 +206,7 @@ public class JMain extends javax.swing.JFrame {
                 menuAddWorkerActionPerformed(evt);
             }
         });
-        menuWorker.add(menuAddWorker);
-
-        menuEditWorker.setText("Edit Worker");
-        menuEditWorker.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuEditWorkerActionPerformed(evt);
-            }
-        });
-        menuWorker.add(menuEditWorker);
-
-        jMenu1.add(menuWorker);
-
-        menuClient.setText("Client");
+        jMenu1.add(menuAddWorker);
 
         menuAddClient.setText("Add Client");
         menuAddClient.addActionListener(new java.awt.event.ActionListener() {
@@ -84,19 +214,7 @@ public class JMain extends javax.swing.JFrame {
                 menuAddClientActionPerformed(evt);
             }
         });
-        menuClient.add(menuAddClient);
-
-        menuEditClient.setText("Edit Client");
-        menuEditClient.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuEditClientActionPerformed(evt);
-            }
-        });
-        menuClient.add(menuEditClient);
-
-        jMenu1.add(menuClient);
-
-        menuService.setText("Service");
+        jMenu1.add(menuAddClient);
 
         menuAddService.setText("Add Service");
         menuAddService.addActionListener(new java.awt.event.ActionListener() {
@@ -104,9 +222,7 @@ public class JMain extends javax.swing.JFrame {
                 menuAddServiceActionPerformed(evt);
             }
         });
-        menuService.add(menuAddService);
-
-        jMenu1.add(menuService);
+        jMenu1.add(menuAddService);
 
         jMenuBar1.add(jMenu1);
 
@@ -147,40 +263,124 @@ public class JMain extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(886, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonDesa)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonCancela))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jTextNom, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel2))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jTextCognom, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jTextAval, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextGender))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jTextPoblacio)
+                                                .addComponent(jTextNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel6))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jTextAdreca, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextNaixement, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel7))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(15, 15, 15)
+                                        .addComponent(jLabel9))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel11)
+                                            .addComponent(jTextDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(532, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextCognom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel11))
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextPoblacio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextAdreca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextNaixement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextAval, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonDesa)
+                            .addComponent(jButtonCancela))))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuAddWorkerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAddWorkerActionPerformed
-        DialogAddWorker work= new DialogAddWorker(this, rootPaneCheckingEnabled);
-        work.setTitle("Add Worker");
-        work.setVisible(true);
-    }//GEN-LAST:event_menuAddWorkerActionPerformed
-
-    private void menuAddServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAddServiceActionPerformed
-        DialogAddServei ser= new DialogAddServei(this, rootPaneCheckingEnabled);
-        ser.setTitle("Add Service");
-        ser.setVisible(true);
-    }//GEN-LAST:event_menuAddServiceActionPerformed
-
     private void menuLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLoadActionPerformed
         try {
             this.control.carregarDades();
         } catch (IOException ex) {
-            Logger.getLogger(JMain.class.getName()).log(Level.SEVERE, null, ex);
+            this.throwDialog(ex.getMessage());
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(JMain.class.getName()).log(Level.SEVERE, null, ex);
+            this.throwDialog(ex.getMessage());
+        } catch (Exception ex) {
+            this.throwDialog(ex.getMessage());
         }
     }//GEN-LAST:event_menuLoadActionPerformed
 
@@ -190,21 +390,62 @@ public class JMain extends javax.swing.JFrame {
         info.setVisible(true);
     }//GEN-LAST:event_menuInfoActionPerformed
 
-    private void menuEditWorkerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditWorkerActionPerformed
-        DialogEditWorker eWorker= new DialogEditWorker(this, rootPaneCheckingEnabled);
-        eWorker.setTitle("Edit Client");
-        eWorker.setVisible(true);
-    }//GEN-LAST:event_menuEditWorkerActionPerformed
-
-    private void menuEditClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditClientActionPerformed
-        DialogEditClient eClient= new DialogEditClient(this, rootPaneCheckingEnabled);
-        eClient.setTitle("Edit Client");
-        eClient.setVisible(true);
-    }//GEN-LAST:event_menuEditClientActionPerformed
+    private void menuAddServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAddServiceActionPerformed
+        DialogAddServei ser= new DialogAddServei(this, rootPaneCheckingEnabled);
+        ser.setTitle("Add Service");
+        ser.setVisible(true);
+    }//GEN-LAST:event_menuAddServiceActionPerformed
 
     private void menuAddClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAddClientActionPerformed
-        // TODO add your handling code here:
+        DialogAddClient cli= new DialogAddClient(this, rootPaneCheckingEnabled);
+        cli.setTitle("Add Client");
+        cli.setVisible(true);
     }//GEN-LAST:event_menuAddClientActionPerformed
+
+    private void menuAddWorkerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAddWorkerActionPerformed
+        DialogAddWorker work= new DialogAddWorker(this, rootPaneCheckingEnabled);
+        work.setTitle("Add Worker");
+        work.setVisible(true);
+    }//GEN-LAST:event_menuAddWorkerActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        try {
+            this.llista();
+        } catch (Exception ex) {
+            this.throwDialog(ex.getMessage());
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jTextPoblacioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPoblacioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextPoblacioActionPerformed
+
+    private void jButtonDesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDesaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonDesaActionPerformed
+
+    private void jButtonCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelaActionPerformed
+        try {
+            cancela();
+        } catch (Exception ex) {
+        }
+    }//GEN-LAST:event_jButtonCancelaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.jDialog1.dispose();
+        this.jLabel10.setText("");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void principalListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_principalListValueChanged
+        int selection = this.principalList.getSelectedIndex();
+        if (selection!=-1) {
+            try {
+                this.llista();
+            } catch (Exception ex) {
+                this.throwDialog(ex.getMessage());
+            }
+ }
+    }//GEN-LAST:event_principalListValueChanged
 
     /**
      * @param args the command line arguments
@@ -242,21 +483,246 @@ public class JMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonCancela;
+    private javax.swing.JButton jButtonDesa;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextAdreca;
+    private javax.swing.JTextField jTextAval;
+    private javax.swing.JTextField jTextCognom;
+    private javax.swing.JTextField jTextDNI;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextGender;
+    private javax.swing.JTextField jTextNaixement;
+    private javax.swing.JTextField jTextNom;
+    private javax.swing.JTextField jTextNumero;
+    private javax.swing.JTextField jTextPoblacio;
     private javax.swing.JMenu menuAbout;
     private javax.swing.JMenuItem menuAddClient;
     private javax.swing.JMenuItem menuAddService;
     private javax.swing.JMenuItem menuAddWorker;
-    private javax.swing.JMenu menuClient;
     private javax.swing.JMenu menuEdit;
-    private javax.swing.JMenuItem menuEditClient;
-    private javax.swing.JMenuItem menuEditWorker;
     private javax.swing.JMenuItem menuInfo;
     private javax.swing.JMenuItem menuLoad;
     private javax.swing.JMenuItem menuSave;
-    private javax.swing.JMenu menuService;
-    private javax.swing.JMenu menuWorker;
+    private javax.swing.JList<String> principalList;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     *
+     * @throws Exception
+     */
+    private void mostraLlista() throws Exception{
+        if(!this.control.mostraCangur().isEmpty()||!this.control.mostraClient().isEmpty()||!this.control.mostraService().isEmpty()){
+            if(this.jComboBox1.getSelectedItem().equals("Worker")){
+                this.principalList.setListData(this.control.mostraCangur().toArray(this.llistaPrincipal=new String[this.control.mostraCangur().size()]));    
+            }
+            if(this.jComboBox1.getSelectedItem().equals("Client")){
+                this.principalList.setListData(this.control.mostraClient().toArray(this.llistaPrincipal=new String[this.control.mostraClient().size()]));    
+            }
+            if(this.jComboBox1.getSelectedItem().equals("Service")){
+                this.principalList.setListData(this.control.mostraService().toArray(this.llistaPrincipal=new String[this.control.mostraService().size()]));
+            }
+        }
+    }
+
+    /**
+     *
+     * @throws Exception
+     */
+    public void llista() throws Exception {
+        this.mostraLlista();
+        if(this.jComboBox1.getSelectedItem().equals("Worker")){
+            this.jLabel1.setText("Name:");
+            this.jLabel2.setText("Lastname:");
+            this.jLabel3.setText("City:");
+            this.jLabel4.setText("Adress:");
+            this.jLabel5.setText("Phone Number:");
+            this.jLabel6.setText("Guarantee:");
+            this.jLabel7.setText("Birth Date:");
+            this.jLabel8.setText("Gender:");
+            this.jLabel9.setText("ID Card:");
+            if(!this.principalList.isSelectionEmpty()){
+                this.jTextNom.setText(this.control.getWorker(this.principalList.getSelectedIndex()).getName());
+                this.jTextCognom.setText(this.control.getWorker(this.principalList.getSelectedIndex()).getLastName());
+                this.jTextGender.setText(this.control.getWorker(this.principalList.getSelectedIndex()).getGender());
+                this.jTextAdreca.setText(this.control.getWorker(this.principalList.getSelectedIndex()).getDireccio());
+                this.jTextPoblacio.setText(this.control.getWorker(this.principalList.getSelectedIndex()).getPoblacio());
+                this.jTextNaixement.setText(this.control.getWorker(this.principalList.getSelectedIndex()).getNaixement().toString());
+                this.jTextNumero.setText(Integer.toString(this.control.getWorker(this.principalList.getSelectedIndex()).getPhoneNumber()));
+                this.jTextDNI.setText(this.control.getWorker(this.principalList.getSelectedIndex()).getDni());
+                this.jTextField1.setText(Float.toString(this.control.getWorker(this.principalList.getSelectedIndex()).getSalari()));
+                this.jLabel1.setVisible(true);
+                this.jLabel2.setVisible(true);
+                this.jLabel3.setVisible(true);
+                this.jLabel4.setVisible(true);
+                this.jLabel5.setVisible(true);
+                this.jLabel7.setVisible(true);
+                this.jLabel8.setVisible(true);
+                this.jLabel11.setVisible(true);
+                this.jTextAdreca.setVisible(true);
+                this.jTextAval.setVisible(false);
+                this.jTextCognom.setVisible(true);
+                this.jTextDNI.setVisible(true);
+                this.jTextGender.setVisible(true);
+                this.jTextNaixement.setVisible(true);
+                this.jTextNumero.setVisible(true);
+                this.jTextPoblacio.setVisible(true);
+                this.jTextNom.setVisible(true);
+                this.jButtonCancela.setVisible(true);
+                this.jButtonDesa.setVisible(true);
+                this.jTextField1.setVisible(true);
+                try {
+                    if(this.control.getWorker(this.principalList.getSelectedIndex()) instanceof CangurMenor){
+                        this.jLabel6.setVisible(true);
+                        this.jTextAval.setText(((CangurMenor)this.control.getWorker(this.principalList.getSelectedIndex())).getAval().getName()+" "+
+                                ((CangurMenor)this.control.getWorker(this.principalList.getSelectedIndex())).getAval().getLastName());
+                        this.jTextAval.setVisible(true);
+                    }
+                    else{
+                        this.jLabel6.setVisible(false);
+                    }
+                } catch (Exception ex) {
+                    this.throwDialog(ex.getMessage());
+                }
+            }
+        }
+        if(this.jComboBox1.getSelectedItem().equals("Client")){
+            this.jLabel1.setText("Name:");
+            this.jLabel2.setText("Lastname:");
+            this.jLabel3.setText("City:");
+            this.jLabel4.setText("Adress:");
+            this.jLabel5.setText("Phone Number:");
+            this.jLabel8.setText("Gender:");
+            this.jLabel9.setText("ID Card:");
+            if(!this.principalList.isSelectionEmpty()){
+                this.jTextNom.setText(this.control.getClient(this.principalList.getSelectedIndex()).getName());
+                this.jTextCognom.setText(this.control.getClient(this.principalList.getSelectedIndex()).getLastName());
+                this.jTextGender.setText(this.control.getClient(this.principalList.getSelectedIndex()).getGender());
+                this.jTextAdreca.setText(this.control.getClient(this.principalList.getSelectedIndex()).getDireccio());
+                this.jTextPoblacio.setText(this.control.getClient(this.principalList.getSelectedIndex()).getPoblacio());
+                this.jTextNumero.setText(Integer.toString(this.control.getClient(this.principalList.getSelectedIndex()).getPhoneNumber()));
+                this.jTextDNI.setText(this.control.getClient(this.principalList.getSelectedIndex()).getDni());
+                this.jLabel1.setVisible(true);
+                this.jLabel2.setVisible(true);
+                this.jLabel3.setVisible(true);
+                this.jLabel4.setVisible(true);
+                this.jLabel5.setVisible(true);
+                this.jLabel6.setVisible(false);
+                this.jLabel7.setVisible(false);
+                this.jLabel8.setVisible(true);
+                this.jLabel9.setVisible(true);
+                this.jLabel11.setVisible(false);
+                this.jTextAdreca.setVisible(true);
+                this.jTextAval.setVisible(false);
+                this.jTextCognom.setVisible(true);
+                this.jTextDNI.setVisible(true);
+                this.jTextGender.setVisible(true);
+                this.jTextNaixement.setVisible(false);
+                this.jTextNumero.setVisible(true);
+                this.jTextPoblacio.setVisible(true);
+                this.jTextNom.setVisible(true);
+                this.jButtonCancela.setVisible(true);
+                this.jButtonDesa.setVisible(true);
+                this.jTextField1.setVisible(false);
+                
+        if(this.jComboBox1.getSelectedItem().equals("Service")){
+            
+            }
+        }
+    }
+    }
+
+    
+    /**
+     * 
+     * @throws Exception 
+     */
+    private void cancela() throws Exception {
+        
+        if(this.jComboBox1.getSelectedItem().equals("Worker")){
+            this.jTextNom.setText(this.control.getWorker(this.principalList.getSelectedIndex()).getName());
+            this.jTextCognom.setText(this.control.getWorker(this.principalList.getSelectedIndex()).getLastName());
+            this.jTextGender.setText(this.control.getWorker(this.principalList.getSelectedIndex()).getGender());
+            this.jTextAdreca.setText(this.control.getWorker(this.principalList.getSelectedIndex()).getDireccio());
+            this.jTextPoblacio.setText(this.control.getWorker(this.principalList.getSelectedIndex()).getPoblacio());
+            this.jTextNaixement.setText(this.control.getWorker(this.principalList.getSelectedIndex()).getNaixement().toString());
+            this.jTextNumero.setText(Integer.toString(this.control.getWorker(this.principalList.getSelectedIndex()).getPhoneNumber()));
+            this.jTextDNI.setText(this.control.getWorker(this.principalList.getSelectedIndex()).getDni());
+            this.jLabel1.setVisible(true);
+            this.jLabel2.setVisible(true);
+            this.jLabel3.setVisible(true);
+            this.jLabel4.setVisible(true);
+            this.jLabel5.setVisible(true);
+            this.jLabel7.setVisible(true);
+            this.jLabel8.setVisible(true);
+            try {
+                if(this.control.getWorker(this.principalList.getSelectedIndex()) instanceof CangurMenor){
+                    this.jLabel6.setVisible(true);
+                    this.jTextAval.setText(((CangurMenor)this.control.getWorker(this.principalList.getSelectedIndex())).getAval().getName()+" "+
+                            ((CangurMenor)this.control.getWorker(this.principalList.getSelectedIndex())).getAval().getLastName());
+                }
+                else{
+                    this.jLabel6.setVisible(false);
+                    }
+                } catch (Exception ex) {
+                    this.throwDialog(ex.getMessage());
+            
+            }
+
+
+        } 
+    }
+    public void addClient(String dni, String name, String lastName, String gender, String direccio, String poblacio, int phoneNumber) throws Exception{
+        Persona p = new Persona(dni, name, lastName, gender, direccio, poblacio, phoneNumber);
+        this.control.addClient(p);
+    }
+    public void addCangur(String dni, String nom, String cognom, String gender, String naixement, String direccio, String poblacio, float salari, int phoneNumber){
+        Cangur c;
+        try {
+            c = new Cangur(dni, nom, cognom, gender, naixement, direccio, poblacio, salari, phoneNumber);
+            try {
+                this.control.addWorker(c);
+            } catch (Exception ex) {
+                this.throwDialog(ex.getMessage());
+            }
+        } catch (ParseException ex) {
+            this.throwDialog(ex.getMessage());
+        }
+        
+    }
+    public void addCangur(String dni, String nom, String cognom, String gender, String naixement, String direccio, String poblacio, float salari, Persona aval, int phoneNumber){
+     CangurMenor c;
+        try {
+            c = new CangurMenor(dni, nom, cognom, gender, naixement, direccio, poblacio, salari, aval, phoneNumber);
+            try {
+                this.control.addWorker(c);
+            } catch (Exception ex) {
+                this.throwDialog(ex.getMessage());
+            }
+        } catch (ParseException ex) {
+            this.throwDialog(ex.getMessage());
+        }
+    }
+    public void throwDialog(String f){
+        this.jLabel10.setText(f);
+        this.jDialog1.setVisible(true);
+        this.jDialog1.setTitle("Error");
+        
+    }
 }

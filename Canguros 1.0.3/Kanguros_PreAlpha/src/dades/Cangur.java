@@ -15,7 +15,7 @@ public class Cangur extends Persona implements Serializable {
     private Date naixement;
     
     /**
-     *
+     * Constructor de cangur
      * @param dni
      * @param nom
      * @param cognom
@@ -37,7 +37,7 @@ public class Cangur extends Persona implements Serializable {
     //Setters
     
     /**
-     *
+     * Set salari.
      * @param salari
      */
     public void setSalari(float salari) {
@@ -45,7 +45,7 @@ public class Cangur extends Persona implements Serializable {
     }
     
     /**
-     *
+     * Set naixement.
      * @param naixement
      * @throws ParseException
      */
@@ -57,7 +57,7 @@ public class Cangur extends Persona implements Serializable {
     //Getters
     
     /**
-     *
+     * Get salari.
      * @return
      */
     public float getSalari() {
@@ -65,7 +65,7 @@ public class Cangur extends Persona implements Serializable {
     }
     
     /**
-     *
+     * Get naixement.
      * @return
      */
     public Date getNaixement() {

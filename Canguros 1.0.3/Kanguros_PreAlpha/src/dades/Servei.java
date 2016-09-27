@@ -20,7 +20,6 @@ public class Servei implements Serializable {
     private Persona client;
     private Cangur empleat;
     
-    //Contructor
     /**
      * Constructor de la Classe Servei
      * @param client
@@ -64,13 +63,17 @@ public class Servei implements Serializable {
     }
     
     /**
-     *
+     * Mètode que canvia el client.
      * @param client
      */
     public void setClient(Persona client) {
         this.client = client;
     }
     
+    /**
+     * Mètode que canvia l'empleat.
+     * @param empleat
+     */
     public void setEmpleat(Cangur empleat) {
         this.empleat = empleat;
     }
@@ -105,7 +108,7 @@ public class Servei implements Serializable {
     }
     
     /**
-     *
+     * Mètode que retorna el client.
      * @return
      */
     public Persona getClient() {
@@ -113,7 +116,7 @@ public class Servei implements Serializable {
     }
     
     /**
-     *
+     * Mètode que retorna l'empleat.
      * @return
      */
     public Cangur getEmpleat() {
@@ -122,7 +125,7 @@ public class Servei implements Serializable {
     
     //Equals
     /**
-     * 
+     * Mètode que compara dos serveis.
      * @param servei
      * @return 
      */
@@ -140,8 +143,9 @@ public class Servei implements Serializable {
            return false;
        }
     }
+    
     /**
-     * 
+     * Hash code
      * @return 
      */
     @Override

@@ -7,7 +7,7 @@ package vista;
 
 /**
  *
- * @author Ivan_
+ * @author Ivan Sevilla & Martí Huerta
  */
 public class DialogInfo extends javax.swing.JDialog {
 
